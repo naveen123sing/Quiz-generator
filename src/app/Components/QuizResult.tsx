@@ -20,8 +20,10 @@ interface QuizResultsProps {
 
 
 export default function QuizResults({ questions, onRegenerate, onDownload }: QuizResultsProps) {
+
   const [answers, setAnswers] = useState<{ [key: number]: number }>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   const handleOptionSelect = (questionId: number, optionIndex: number) => {
     setAnswers((prev) => ({
@@ -57,7 +59,10 @@ export default function QuizResults({ questions, onRegenerate, onDownload }: Qui
           </div> */}
           <div className="px-4 py-2 rounded-full bg-white shadow-sm">
             <span className="text-sm text-gray-700">
-              <span style={{ color: '#4F46E5' }}>10 Questions</span> Generated
+              <span style={{ color: '#4F46E5' }}>
+                {questions.length} Questions
+              </span>{' '}
+              Generated
             </span>
           </div>
         </div>

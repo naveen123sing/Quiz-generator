@@ -36,39 +36,46 @@ export default function QuizCard({ questionNumber, question, options, correctAns
   };
 
   const getOptionStyle = (index: number) => {
-    // If user hasn't selected this option, return default style
-    if (!isSubmitted) {
-      return selectedOption === index
-        ? "border-indigo-500 bg-indigo-50"
-        : "border-gray-200 bg-gray-50";
+    // 👉 Agar user ne select nahi kiya
+    if (selectedOption === null) {
+      return "border-gray-200 bg-gray-50";
     }
 
-    // AFTER submit → show correct/wrong
-    if (index === correctAnswer) {
+    // 👉 Selected option
+    if (index === selectedOption) {
+      if (index === correctAnswer) {
+        return "border-green-500 bg-green-50 border-2";
+      } else {
+        return "border-red-500 bg-red-50 border-2";
+      }
+    }
+
+    // 👉 Submit ke baad correct answer bhi highlight ho
+    if (isSubmitted && index === correctAnswer) {
       return "border-green-500 bg-green-50 border-2";
     }
 
-    if (index === selectedOption) {
-      return "border-red-500 bg-red-50 border-2";
-    }
     return "border-gray-200 bg-gray-50";
   };
 
   const getOptionLabelStyle = (index: number) => {
-    if (!isSubmitted) {
-      return selectedOption === index
-        ? 'border-indigo-500 bg-indigo-500 text-white'
-        : 'border-gray-300 text-gray-600 bg-white';
-    }
-
-    if (index === correctAnswer) {
-      return 'border-green-500 bg-green-500 text-white';
+    if (selectedOption === null) {
+      return "border-gray-300 text-gray-600 bg-white";
     }
 
     if (index === selectedOption) {
-      return 'border-red-500 bg-red-500 text-white';
+      if (index === correctAnswer) {
+        return "border-green-500 bg-green-500 text-white";
+      } else {
+        return "border-red-500 bg-red-500 text-white";
+      }
     }
-    return 'border-gray-300 text-gray-600 bg-white';
+
+    if (isSubmitted && index === correctAnswer) {
+      return "border-green-500 bg-green-500 text-white";
+    }
+
+    return "border-gray-300 text-gray-600 bg-white";
   };
 
   return (
