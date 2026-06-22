@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCreateAccount } from '@/app/services/QuizServive';
 import { getFriendlyErrorMessage } from '@/app/services/errorHandler';
+import csllogo from '../assests/csllogo.jpg';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -111,7 +112,7 @@ export default function SignupPage() {
       <footer className="w-full border-t border-gray-200 bg-white/80 py-4">
         <div className="flex justify-center">
           <Image
-            src="/csl%20logo.jpg"
+            src={csllogo}
             alt="Compucom Software Limited logo"
             width={1936}
             height={976}
